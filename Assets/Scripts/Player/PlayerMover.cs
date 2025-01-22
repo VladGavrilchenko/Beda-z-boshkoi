@@ -8,7 +8,6 @@ public interface IIsDead
     bool IsDead();
     void SetIsDead();
 }
-
 public interface IMove
 {
     bool IsMove();
