@@ -47,10 +47,11 @@ public class FoxSpeaker : MonoBehaviour
 
     }
 
-    public void PlayeAudio(AudioClip playeClip)
+    public void PlayeAudio(AudioClip playeClip, string sayText)
     {
         audioSource.clip = playeClip;
         audioSource.Play();
+        text.text = sayText;
         text.gameObject.SetActive(true);
     }
 }

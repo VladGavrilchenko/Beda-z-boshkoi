@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.LookDev;
+using TMPro;
 
 public class FoxInteractive : Interactive
 {
+    [SerializeField] private string sayOnLeave;
+    [SerializeField] private TMP_Text sayText;
     [SerializeField] private SayingInteractive[] blockSayingInteractives;
-    [SerializeField] private AudioClip[] saysClip;
-    private PlayerDoorInteractive doorInteractive;
+    [SerializeField] private AudioClip sayClip;
     private FoxSpeaker foxSpeaker;
     private AudioSource audioSource;
 
@@ -18,11 +19,14 @@ public class FoxInteractive : Interactive
         {
             say.GetComponent<Collider>().enabled = false;
         }
-
-        doorInteractive = FindAnyObjectByType<PlayerDoorInteractive>();
         foxSpeaker = FindAnyObjectByType<FoxSpeaker>();
         foxSpeaker.enabled = false;
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        sayText.gameObject.SetActive(audioSource.isPlaying);
     }
 
     public override void Interact()
@@ -41,7 +45,8 @@ public class FoxInteractive : Interactive
     {
         if (audioSource.isPlaying == false)
         {
-            audioSource.clip = saysClip[0];
+            sayText.text = sayOnLeave;
+            audioSource.clip = sayClip;
             audioSource.Play();
         }
     }

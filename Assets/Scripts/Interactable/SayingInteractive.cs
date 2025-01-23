@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SayingInteractive : Interactive
 {
-    [SerializeField] private AudioClip say;
+    [SerializeField] protected AudioClip say;
+    [SerializeField] protected string sayText;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class SayingInteractive : Interactive
             return;
         }
 
-        FindFirstObjectByType<FoxSpeaker>().PlayeAudio(say);
+        FindFirstObjectByType<FoxSpeaker>().PlayeAudio(say , sayText);
     }
 
 }
