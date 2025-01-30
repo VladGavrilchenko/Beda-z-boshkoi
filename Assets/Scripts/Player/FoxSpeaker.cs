@@ -8,11 +8,13 @@ public class FoxSpeaker : MonoBehaviour
     [SerializeField] private GameObject foxHadUI;
     [SerializeField] private Animator foxHadAnimator;
     [SerializeField] private TMP_Text text;
+    [SerializeField] private GameObject textObject;
     private AudioSource audioSource;
 
     private void Awake()
     {
         foxHadUI.SetActive(false);
+        textObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -21,8 +23,9 @@ public class FoxSpeaker : MonoBehaviour
         {
             foxHadUI.SetActive(true);
             audioSource.Play();
+            textObject.SetActive(true);
         }
- 
+
     }
 
     // Start is called before the first frame update
@@ -43,6 +46,7 @@ public class FoxSpeaker : MonoBehaviour
         if (audioSource.isPlaying == false && text.gameObject.activeSelf)
         {
             text.gameObject.SetActive(false);
+            textObject.SetActive(false);
         }
 
     }
@@ -53,5 +57,6 @@ public class FoxSpeaker : MonoBehaviour
         audioSource.Play();
         text.text = sayText;
         text.gameObject.SetActive(true);
+        textObject.SetActive(true);
     }
 }

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Purchasing;
 using UnityEngine;
-using UnityEngine.Rendering.LookDev;
 
 public class GmomeSpawnerTrigger : MonoBehaviour
 {

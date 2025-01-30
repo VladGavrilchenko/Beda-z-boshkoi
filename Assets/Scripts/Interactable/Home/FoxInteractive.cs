@@ -35,6 +35,8 @@ public class FoxInteractive : Interactive
         foxSpeaker.enabled = true;
         Destroy(gameObject);
 
+        FindAnyObjectByType<GameManager>().SetNextMission(1);
+
         foreach (SayingInteractive say in blockSayingInteractives)
         {
             say.GetComponent<Collider>().enabled = true;

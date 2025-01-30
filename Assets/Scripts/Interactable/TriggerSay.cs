@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class TriggerSay: MonoBehaviour
 {
-    [SerializeField] protected AudioClip say;
-    [SerializeField] protected string sayText;
+    [SerializeField] private AudioClip say;
+    [SerializeField] private string sayText;
+    [SerializeField] private float timeStop;
+
+    private float lostInteractiveTime = 0;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && Time.time > timeStop + lostInteractiveTime)
         {
+            lostInteractiveTime = Time.time;
             FindFirstObjectByType<FoxSpeaker>().PlayeAudio(say, sayText);
         }
     }

@@ -16,6 +16,8 @@ public class CloseDoorTrigger : MonoBehaviour
                 trigger.gameObject.SetActive(false);
             }
             FindObjectOfType<EnterDoorInteractable>().enabled = true;
+            FindAnyObjectByType<GameManager>().SetNextMission(6);
+            Destroy(FindAnyObjectByType<GoOutideTrigger>().gameObject);
         }
     }
 }
