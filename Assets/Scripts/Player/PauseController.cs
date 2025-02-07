@@ -5,6 +5,7 @@ using UnityEngine;
 interface IPause
 {
     bool IsPause();
+    void SetPause(bool isPause);
 }
 
 public class PauseController : MonoBehaviour , IPause
@@ -18,6 +19,12 @@ public class PauseController : MonoBehaviour , IPause
         return isPause;
     }
 
+    public void SetPause(bool isPause)
+    {
+        this.isPause = isPause;
+        Pause();
+    }
+
     private void Start()
     {
         iIsDead = FindAnyObjectByType<PlayerMover>().GetComponent<IIsDead>();
@@ -29,19 +36,24 @@ public class PauseController : MonoBehaviour , IPause
     {
         if (Input.GetKeyDown(KeyCode.Escape) && iIsDead.IsDead() == false)
         {
-            pauseUI.SetActive(!pauseUI.activeSelf);
-            isPause = pauseUI.activeSelf;
+            Pause();
+        }
+    }
+    
+    private void Pause()
+    {
+        pauseUI.SetActive(!pauseUI.activeSelf);
+        isPause = pauseUI.activeSelf;
 
-            if (isPause == false)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
-            }
+        if (isPause == false)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 }

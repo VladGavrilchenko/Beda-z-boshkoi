@@ -6,13 +6,8 @@ public class CameraInteractive : SayingInteractive
 {
     [SerializeField] private AudioClip altSayClip;
     [SerializeField] private string altSayText;
-    private OldCamera oldCamera;
+    [SerializeField] private PhotoCamera oldCamera;
     private bool isAltSay;
-
-    private void Awake()
-    {
-        oldCamera = FindAnyObjectByType<OldCamera>();
-    }
 
     public override void Interact()
     {
@@ -40,7 +35,9 @@ public class CameraInteractive : SayingInteractive
             FindAnyObjectByType<GameManager>().SetNextMission(5);
         }
 
+        oldCamera = FindAnyObjectByType<PhotoCamera>(); 
         Destroy(gameObject);
+        oldCamera.SetActive(true);
         oldCamera.enabled = true;
     }
 

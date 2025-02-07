@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MoralHealth : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MoralHealth : MonoBehaviour
     [SerializeField] private float maxMoral;
     [SerializeField] private int countHeal;
     [SerializeField] private float fillSpeed = 1f; // швидкість заповнення шкали
+    [SerializeField] TMP_Text countText;
     private float currentMoral;
 
     private void OnEnable()
@@ -28,6 +30,7 @@ public class MoralHealth : MonoBehaviour
         medicalUI.SetActive(false);
         moralSlider.gameObject.SetActive(false);
         enabled = false;
+        UpdateUI();
     }
 
     private IEnumerator FillMoralBar()
@@ -63,5 +66,15 @@ public class MoralHealth : MonoBehaviour
         }
 
         moralSlider.value = currentMoral;
+    }
+
+    public void AddCountHealth(int addCountHeal)
+    {
+        countHeal += countHeal;
+        UpdateUI();
+    }
+    private void UpdateUI()
+    {
+        countText.text = countHeal.ToString();
     }
 }

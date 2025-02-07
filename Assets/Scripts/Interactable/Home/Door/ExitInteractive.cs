@@ -21,14 +21,14 @@ public class ExitInteractive : Interactive
 
     public override void Interact()
     {
-        if(FindAnyObjectByType<OldCamera>().enabled == false && FindAnyObjectByType<MoralHealth>().enabled == false)
+        if(FindAnyObjectByType<PhotoCamera>().enabled == false && FindAnyObjectByType<MoralHealth>().enabled == false)
         {
             Debug.Log("We need Camera and Moral");
             foxSpeaker.PlayeAudio(sayTakeMedicineAndCamera , sayTextTakeMedicineAndCamera);
             FindAnyObjectByType<GameManager>().SetNextMission(2);
             return;
         }
-        else if (FindAnyObjectByType<OldCamera>().enabled == false)
+        else if (FindAnyObjectByType<PhotoCamera>().enabled == false)
         {
             Debug.Log("We need Camera");
             foxSpeaker.PlayeAudio(sayTakeCamera, sayTextTakeCamera);
