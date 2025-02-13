@@ -13,10 +13,6 @@ public class MimickActivator : MonoBehaviour
     protected float distanceToPlayer;
     protected bool isStartSpawn;
 
-    private void Start()
-    {
-        playerTransform = FindAnyObjectByType<PlayerMover>().transform;
-    }
 
     private void Update()
     {
@@ -55,11 +51,26 @@ public class MimickActivator : MonoBehaviour
         return true;
     }
 
+
+    public void SetActive(bool isActive)
+    {
+        if (isActive)
+        {
+            playerTransform = FindAnyObjectByType<PlayerMover>().transform;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     protected IEnumerator SpawnMonsterWithDelay()
     {
         GameObject temp = Instantiate(spawnParticle, transform.position , Quaternion.identity).gameObject;
         temp.transform.SetParent(transform.GetChild(0));
         yield return new WaitForSeconds(spawnDelay);
+        Destroy(temp);
+        Destroy(gameObject);
         Instantiate(spawnMonster, transform.position, Quaternion.identity);
     }
 }
