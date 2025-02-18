@@ -9,6 +9,7 @@ public class MimickActivator : MonoBehaviour
     [SerializeField] protected LayerMask obstacleLayers;
     [SerializeField] protected GameObject spawnMonster;
     [SerializeField] protected float spawnDelay = 2f;
+    [SerializeField] protected Transform[] patrulePoints;
     protected Transform playerTransform;
     protected float distanceToPlayer;
     protected bool isStartSpawn;
@@ -71,6 +72,7 @@ public class MimickActivator : MonoBehaviour
         yield return new WaitForSeconds(spawnDelay);
         Destroy(temp);
         Destroy(gameObject);
-        Instantiate(spawnMonster, transform.position, Quaternion.identity);
+        GameObject monster = Instantiate(spawnMonster, transform.position, Quaternion.identity);
+        monster.GetComponent<EnemyPatrulsPoint>().SetPatrolPoints(patrulePoints);
     }
 }

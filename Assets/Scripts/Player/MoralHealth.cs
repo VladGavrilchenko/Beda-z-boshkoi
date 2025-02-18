@@ -77,4 +77,13 @@ public class MoralHealth : MonoBehaviour
     {
         countText.text = countHeal.ToString();
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Wolf"))
+        {
+            WolfParameters wolfParameters = hit.gameObject.GetComponent<WolfParameters>();
+            SubtractMoral(wolfParameters.TakeDamageAndDead());
+        }
+    }
 }
