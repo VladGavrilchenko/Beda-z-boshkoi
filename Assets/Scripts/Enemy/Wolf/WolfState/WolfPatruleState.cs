@@ -14,6 +14,7 @@ public class WolfPatruleState : WolfState
         wolf.GetEnemyAI().SetIsStop(false);
         wolf.GetEnemyBeside().enabled = true;
         wolf.GetEnemyVision().enabled = true;
+        wolf.GetEnemySerch().enabled = false;
     }
 
     public override void OnUpdateState(WolfStateManager wolf)

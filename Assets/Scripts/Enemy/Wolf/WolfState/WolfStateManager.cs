@@ -15,6 +15,7 @@ public class WolfStateManager : MonoBehaviour
     private EnemyBeside enemyBeside;
     private EnemyAI enemyAI;
     private EnemyPatrulsPoint enemyPatrulsPoint;
+    private EnemySerch enemySerch;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class WolfStateManager : MonoBehaviour
         enemyBeside = GetComponent<EnemyBeside>();
         enemyAI = GetComponent<EnemyAI>();
         enemyPatrulsPoint = GetComponent<EnemyPatrulsPoint>();
+        enemySerch = GetComponent<EnemySerch>();
         currentState = wolfPatruleState;
         currentState.EnterState(this);
     }
@@ -61,6 +63,11 @@ public class WolfStateManager : MonoBehaviour
     public EnemyVision GetEnemyVision()
     {
         return enemyVision;
+    }
+
+    public EnemySerch GetEnemySerch()
+    {
+        return enemySerch;
     }
 
 }

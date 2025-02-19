@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyPatrulsPoint : MonoBehaviour
 {
-    private List<Transform> patrolPoints = new List<Transform>();
+    [SerializeField] private List<Transform> patrolPoints = new List<Transform>();
     private List<Transform> passedPoints = new List<Transform>();
     private Transform activePoint;
     private int randomSport;

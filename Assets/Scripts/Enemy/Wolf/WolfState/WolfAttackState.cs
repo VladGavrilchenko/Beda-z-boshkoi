@@ -8,6 +8,7 @@ public class WolfAttackState : WolfState
     {
         wolf.GetEnemyAI().SetIsStop(false);
         wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetPlayerTransform());
+        wolf.GetEnemyAI().GetNavMeshAgent().stoppingDistance = 0;
     }
 
     public override void OnUpdateState(WolfStateManager wolf)

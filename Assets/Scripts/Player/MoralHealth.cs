@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.Burst.CompilerServices;
 
 public class MoralHealth : MonoBehaviour
 {
@@ -80,9 +81,14 @@ public class MoralHealth : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Wolf"))
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Wolf"))
         {
-            WolfParameters wolfParameters = hit.gameObject.GetComponent<WolfParameters>();
+            WolfParameters wolfParameters = other.gameObject.GetComponent<WolfParameters>();
             SubtractMoral(wolfParameters.TakeDamageAndDead());
         }
     }
