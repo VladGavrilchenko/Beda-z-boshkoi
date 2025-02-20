@@ -7,6 +7,13 @@ public class EnemyBeside : MonoBehaviour
     [SerializeField] private float detectionRange = 5f;
     private Transform player;
     private bool isNear;
+
+    private void OnEnable()
+    {
+        player = FindAnyObjectByType<PlayerMover>().transform;
+        isNear = IsPlayerNear();
+    }
+
     private void Start()
     {
         player = FindAnyObjectByType<PlayerMover>().transform;

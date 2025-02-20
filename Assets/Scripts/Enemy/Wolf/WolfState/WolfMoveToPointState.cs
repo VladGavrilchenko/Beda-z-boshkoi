@@ -1,36 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class WolfPatruleState : WolfState
+public class WolfMoveToPointState : WolfState
 {
     private float maxTimeWait = 10;
     private float timeStartMove;
+    private Vector3 position;
 
     public override void EnterState(WolfStateManager wolf)
     {
-        wolf.GetEnemyPatrulsPoint().SelectPoint();
-        wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetActivePoint());
-        wolf.GetEnemyAI().SetIsStop(false);
         wolf.GetEnemyBeside().enabled = true;
         wolf.GetEnemyVision().enabled = true;
         wolf.GetEnemySerch().enabled = false;
+        wolf.GetEnemyAI().SetIsStop(false);
+        position = (wolf.GetEnemyPatrulsPoint().GetPlayerTransform().position);
         timeStartMove = 0;
     }
 
     public override void OnUpdateState(WolfStateManager wolf)
     {
-        if (Vector3.Distance(wolf.transform.position, wolf.GetEnemyPatrulsPoint().GetActivePoint().position) <= wolf.GetEnemyAI().GetNavMeshAgent().stoppingDistance)
-        {
-            WaitToStartMove(wolf);
-        }
-
         if (wolf.GetEnemyBeside().IsNear() || wolf.GetEnemyVision().IsSeePlayer())
         {
             wolf.SwithcState(wolf.wolfMoveToPlayer);
         }
-        wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetActivePoint());
 
+        if (Vector3.Distance(wolf.transform.position, position) <= wolf.GetEnemyAI().GetNavMeshAgent().stoppingDistance)
+        {
+            WaitToStartMove(wolf);
+        }
+
+        wolf.GetEnemyAI().SetCurrentPoint(position);
     }
 
     public override void OnCollisionState(WolfStateManager wolf, Collision collision)
@@ -48,9 +49,7 @@ public class WolfPatruleState : WolfState
         else
         {
             timeStartMove = 0;
-            wolf.GetEnemyPatrulsPoint().SelectPoint();
-            wolf.GetEnemyAI().SetIsStop(false);
-            wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetActivePoint());
+            wolf.SwithcState(wolf.wolfPatruleState);
         }
     }
 }

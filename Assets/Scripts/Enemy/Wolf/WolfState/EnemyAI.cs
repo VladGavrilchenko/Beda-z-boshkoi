@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class EnemyAI : MonoBehaviour
 {
     private NavMeshAgent agent;
     private bool isStop;
+    private bool isMoveToTransform;
     private Transform currentPoint;
+    private Vector3 currentPosition;
 
     void Start()
     {
@@ -17,12 +20,25 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         agent.isStopped = isStop;
-        agent.SetDestination(currentPoint.position);
+
+        if (isMoveToTransform)
+        {
+            currentPosition = currentPoint.position;
+        }
+
+        agent.SetDestination(currentPosition);
     }
 
     public void SetCurrentPoint(Transform newCurrentPoint)
     {
         currentPoint = newCurrentPoint;
+        isMoveToTransform = true;
+    }
+
+    public void SetCurrentPoint(Vector3 newCurrentPosition)
+    {
+        currentPosition = newCurrentPosition;
+        isMoveToTransform = false;
     }
 
     public NavMeshAgent GetNavMeshAgent()

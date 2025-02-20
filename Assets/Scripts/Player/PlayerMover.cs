@@ -72,6 +72,7 @@ public class PlayerMover : MonoBehaviour , IIsDead , IMove
     {
         if(isCanMove == false || iPause.IsPause())
         {
+
         }
 
 

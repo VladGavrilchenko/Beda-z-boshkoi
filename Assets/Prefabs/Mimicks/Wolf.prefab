@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e281cf4bd4c194495c511ba25166b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serchRange: 15
+  serchRange: 12.6
 --- !u!114 &8936916498084640080
 MonoBehaviour:
   m_ObjectHideFlags: 0

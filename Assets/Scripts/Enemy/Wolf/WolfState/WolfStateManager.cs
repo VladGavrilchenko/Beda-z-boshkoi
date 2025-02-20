@@ -9,6 +9,7 @@ public class WolfStateManager : MonoBehaviour
     public WolfMoveToPlayer wolfMoveToPlayer = new WolfMoveToPlayer();
     public WolfAttackState wolfAttackState= new WolfAttackState();
     public WolfPatruleState wolfPatruleState = new WolfPatruleState();
+    public WolfMoveToPointState wolfMoveToPointState = new WolfMoveToPointState();
     private WolfState currentState;
 
     private EnemyVision enemyVision;
@@ -43,6 +44,7 @@ public class WolfStateManager : MonoBehaviour
     {
         currentState = state;
         currentState.EnterState(this);
+        Debug.Log(currentState);
     }
 
     public EnemyPatrulsPoint GetEnemyPatrulsPoint()

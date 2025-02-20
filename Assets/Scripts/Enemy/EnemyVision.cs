@@ -10,6 +10,12 @@ public class EnemyVision : MonoBehaviour
     private Transform player;
     private bool isSeePlayer;
 
+    private void OnEnable()
+    {
+        player = FindAnyObjectByType<PlayerMover>().transform;
+        isSeePlayer = CanSeePlayer();
+    }
+
     private void Start()
     {
         player = FindAnyObjectByType<PlayerMover>().transform;

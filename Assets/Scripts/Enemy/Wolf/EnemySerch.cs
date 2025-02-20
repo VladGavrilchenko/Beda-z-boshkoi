@@ -8,9 +8,15 @@ public class EnemySerch : MonoBehaviour
     private Transform player;
     private bool isNear;
 
-    private void Start()
+    private void OnEnable()
+    {
+        isNear = IsPlayerNear();
+    }
+
+    private void Awake()
     {
         player = FindAnyObjectByType<PlayerMover>().transform;
+        isNear = IsPlayerNear();
     }
 
     private void Update()
