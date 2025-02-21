@@ -11584,7 +11584,7 @@ Transform:
   m_GameObject: {fileID: 1901022673}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7742225, z: -0, w: 0.63291353}
-  m_LocalPosition: {x: -1.27, y: 1.128, z: -0.44}
+  m_LocalPosition: {x: -6.53, y: 1.128, z: 21.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11880,7 +11880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1934477783
 Transform:
   m_ObjectHideFlags: 0
@@ -13499,6 +13499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MimickWolf
       objectReference: {fileID: 0}
+    - target: {fileID: 6152459973477024004, guid: 2976c54e5fceef742888e966263e0515,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7546025443751694861, guid: 2976c54e5fceef742888e966263e0515,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13567,10 +13572,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4065515049058101248, guid: f72cfa22510beaf41969560168247683,
+        type: 3}
+      propertyPath: spawnMonster
+      value: 
+      objectReference: {fileID: 1004857155339768291, guid: 704046b3431f1f04b8b3e7c27e05d128,
+        type: 3}
+    - target: {fileID: 4065515049058101248, guid: f72cfa22510beaf41969560168247683,
+        type: 3}
+      propertyPath: patrulePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065515049058101248, guid: f72cfa22510beaf41969560168247683,
+        type: 3}
+      propertyPath: patrulePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1950039773}
+    - target: {fileID: 4065515049058101248, guid: f72cfa22510beaf41969560168247683,
+        type: 3}
+      propertyPath: patrulePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1456132335}
     - target: {fileID: 8529555042664774121, guid: f72cfa22510beaf41969560168247683,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.17
+      value: -8.92
       objectReference: {fileID: 0}
     - target: {fileID: 8529555042664774121, guid: f72cfa22510beaf41969560168247683,
         type: 3}
@@ -13580,7 +13606,7 @@ PrefabInstance:
     - target: {fileID: 8529555042664774121, guid: f72cfa22510beaf41969560168247683,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.673
+      value: 21.19
       objectReference: {fileID: 0}
     - target: {fileID: 8529555042664774121, guid: f72cfa22510beaf41969560168247683,
         type: 3}
@@ -13625,7 +13651,7 @@ PrefabInstance:
     - target: {fileID: 9162633065216908544, guid: f72cfa22510beaf41969560168247683,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
