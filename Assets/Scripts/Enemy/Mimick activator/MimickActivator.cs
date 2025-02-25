@@ -10,7 +10,7 @@ public class MimickActivator : MonoBehaviour
     [SerializeField] protected GameObject spawnMonster;
     [SerializeField] protected float spawnDelay = 2f;
     [SerializeField] protected Transform[] patrulePoints;
-    protected Transform playerTransform;
+    [SerializeField] protected Transform playerTransform;
     protected float distanceToPlayer;
     protected bool isStartSpawn;
 

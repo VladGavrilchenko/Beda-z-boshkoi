@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WolfParameters : MonoBehaviour
+public class WolfParameters : MimicParameter
 {
     [SerializeField] private float playerDamage;
 

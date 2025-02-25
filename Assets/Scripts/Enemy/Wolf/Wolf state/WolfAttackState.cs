@@ -6,9 +6,9 @@ public class WolfAttackState : WolfState
 {
     public override void EnterState(WolfStateManager wolf)
     {
-        wolf.GetEnemyAI().SetIsStop(false);
-        wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetPlayerTransform());
-        wolf.GetEnemyAI().GetNavMeshAgent().stoppingDistance = 0;
+        wolf.enemyAI.SetIsStop(false);
+        wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetPlayerTransform());
+        wolf.enemyAI.GetNavMeshAgent().stoppingDistance = 0;
     }
 
     public override void OnUpdateState(WolfStateManager wolf)

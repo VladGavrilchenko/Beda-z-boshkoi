@@ -7,27 +7,27 @@ public class WolfMoveToPlayer : WolfState
 {
     public override void EnterState(WolfStateManager wolf)
     {
-        wolf.GetEnemyBeside().enabled = false;
-        wolf.GetEnemyVision().enabled = false;
-        wolf.GetEnemySerch().enabled = true;
-        wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetPlayerTransform());
-        wolf.GetEnemyAI().SetIsStop(false);
+        wolf.enemyBeside.enabled = false;
+        wolf.enemyVision.enabled = false;
+        wolf.enemySerch.enabled = true;
+        wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetPlayerTransform());
+        wolf.enemyAI.SetIsStop(false);
     }
 
     public override void OnUpdateState(WolfStateManager wolf)
     {
-        if (wolf.GetEnemySerch().IsNear() == false)
+        if (wolf.enemySerch.IsNear() == false)
         {
             wolf.SwithcState(wolf.wolfMoveToPointState);
         }
 
-        if (Vector3.Distance(wolf.transform.position, wolf.GetEnemyPatrulsPoint().GetPlayerTransform().position) < 2)
+        if (Vector3.Distance(wolf.transform.position, wolf.enemyPatrulsPoint.GetPlayerTransform().position) < 2)
         {
             wolf.SwithcState(wolf.wolfAttackState);
         }
 
-        wolf.GetEnemyAI().SetIsStop(false);
-        wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetPlayerTransform());
+        wolf.enemyAI.SetIsStop(false);
+        wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetPlayerTransform());
     }
 
     public override void OnCollisionState(WolfStateManager wolf, Collision collision)

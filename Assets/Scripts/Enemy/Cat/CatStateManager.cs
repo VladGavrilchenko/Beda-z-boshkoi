@@ -1,33 +1,28 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WolfStateManager : MonoBehaviour
+public class CatStateManager : MonoBehaviour
 {
-    public WolfMoveToPlayer wolfMoveToPlayer = new WolfMoveToPlayer();
-    public WolfAttackState wolfAttackState= new WolfAttackState();
-    public WolfPatruleState wolfPatruleState = new WolfPatruleState();
-    public WolfMoveToPointState wolfMoveToPointState = new WolfMoveToPointState();
-    private WolfState currentState;
+    public CatMoveToPlayer catMoveToPlayer = new CatMoveToPlayer();
+    public CatMoveToPointState catMoveToPointState = new CatMoveToPointState();
+    public CatAttackState catAttackState = new CatAttackState();
+    public CatPatruleState catPatruleState = new CatPatruleState();
+    private CatState currentState;
 
     public EnemyVision enemyVision { get; private set; }
     public EnemyBeside enemyBeside { get; private set; }
     public EnemyAI enemyAI { get; private set; }
     public EnemyPatrulsPoint enemyPatrulsPoint { get; private set; }
     public EnemySerch enemySerch { get; private set; }
-    public WolfParameters wolfParameters { get; private set; }
-
     private void Start()
     {
-        FindAnyObjectByType<EnemyManager>().AddToWolfs(this);
         enemyVision = GetComponentInChildren<EnemyVision>();
         enemyBeside = GetComponent<EnemyBeside>();
         enemyAI = GetComponent<EnemyAI>();
         enemyPatrulsPoint = GetComponent<EnemyPatrulsPoint>();
         enemySerch = GetComponent<EnemySerch>();
-        wolfParameters = GetComponent<WolfParameters>();
-        currentState = wolfPatruleState;
+        currentState = catPatruleState;
         currentState.EnterState(this);
     }
 
@@ -41,15 +36,10 @@ public class WolfStateManager : MonoBehaviour
         currentState.OnCollisionState(this, collision);
     }
 
-    public void SwithcState(WolfState state)
+    public void SwithcState(CatState state)
     {
         currentState = state;
         currentState.EnterState(this);
         Debug.Log(currentState);
-    }
-
-    private void OnDestroy()
-    {
-        FindAnyObjectByType<EnemyManager>().RemoveWolf(this);
     }
 }

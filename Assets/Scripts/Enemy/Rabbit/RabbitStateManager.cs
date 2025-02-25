@@ -7,12 +7,15 @@ public class RabbitStateManager : MonoBehaviour
     public RabbitScreamState rabbitScreamState = new RabbitScreamState();
     public RabbitPatruleState rabbitPatruleState = new RabbitPatruleState();
     private RabbitState currentState;
-
-    private EnemyVision enemyVision;
-    private EnemyBeside enemyBeside;
-    private EnemyAI enemyAI;
-    private EnemyPatrulsPoint enemyPatrulsPoint;
-    private EnemySerch enemySerch;
+    
+    public RabbitParameter rabbitParameter { get; private set; }
+    public EnemyVision enemyVision { get; private set; }
+    public EnemyBeside enemyBeside { get; private set; }
+    public EnemyAI enemyAI { get; private set; }
+    public EnemyPatrulsPoint enemyPatrulsPoint { get; private set; }
+    public EnemySerch enemySerch { get; private set; }
+    public  AudioSource audioSource { get; private set; }
+    public CameraShake cameraShake { get; private set; }
 
     private void Start()
     {
@@ -21,6 +24,9 @@ public class RabbitStateManager : MonoBehaviour
         enemyAI = GetComponent<EnemyAI>();
         enemyPatrulsPoint = GetComponent<EnemyPatrulsPoint>();
         enemySerch = GetComponent<EnemySerch>();
+        audioSource = GetComponentInChildren<AudioSource>();
+        cameraShake = FindAnyObjectByType<CameraShake>();
+        rabbitParameter = GetComponent<RabbitParameter>();
         SwithcState(rabbitPatruleState);
     }
 
@@ -29,35 +35,9 @@ public class RabbitStateManager : MonoBehaviour
         currentState.OnUpdateState(this);
     }
 
-
     public void SwithcState(RabbitState state)
     {
         currentState = state;
         currentState.EnterState(this);
-    }
-
-    public EnemyPatrulsPoint GetEnemyPatrulsPoint()
-    {
-        return enemyPatrulsPoint;
-    }
-
-    public EnemyAI GetEnemyAI()
-    {
-        return enemyAI;
-    }
-
-    public EnemyBeside GetEnemyBeside()
-    {
-        return enemyBeside;
-    }
-
-    public EnemyVision GetEnemyVision()
-    {
-        return enemyVision;
-    }
-
-    public EnemySerch GetEnemySerch()
-    {
-        return enemySerch;
     }
 }

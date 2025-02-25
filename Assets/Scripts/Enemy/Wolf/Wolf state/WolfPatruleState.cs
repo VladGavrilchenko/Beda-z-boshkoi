@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class WolfPatruleState : WolfState
 {
-    private float maxTimeWait = 10;
     private float timeStartMove;
 
     public override void EnterState(WolfStateManager wolf)
     {
-        wolf.GetEnemyPatrulsPoint().SelectPoint();
-        wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetActivePoint());
-        wolf.GetEnemyAI().SetIsStop(false);
-        wolf.GetEnemyBeside().enabled = true;
-        wolf.GetEnemyVision().enabled = true;
-        wolf.GetEnemySerch().enabled = false;
+        wolf.enemyPatrulsPoint.SelectPoint();
+        wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
+        wolf.enemyAI.SetIsStop(false);
+        wolf.enemyBeside.enabled = true;
+        wolf.enemyVision.enabled = true;
+        wolf.enemySerch.enabled = false;
         timeStartMove = 0;
     }
 
     public override void OnUpdateState(WolfStateManager wolf)
     {
-        if (Vector3.Distance(wolf.transform.position, wolf.GetEnemyPatrulsPoint().GetActivePoint().position) <= wolf.GetEnemyAI().GetNavMeshAgent().stoppingDistance)
+        if (Vector3.Distance(wolf.transform.position, wolf.enemyPatrulsPoint.GetActivePoint().position) <= wolf.enemyAI.GetNavMeshAgent().stoppingDistance)
         {
             WaitToStartMove(wolf);
         }
 
-        if (wolf.GetEnemyBeside().IsNear() || wolf.GetEnemyVision().IsSeePlayer())
+        if (wolf.enemyBeside.IsNear() || wolf.enemyVision.IsSeePlayer())
         {
             wolf.SwithcState(wolf.wolfMoveToPlayer);
         }
-        wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetActivePoint());
+        wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
 
     }
 
@@ -40,17 +39,17 @@ public class WolfPatruleState : WolfState
 
     private void WaitToStartMove(WolfStateManager wolf)
     {
-        if (maxTimeWait > timeStartMove)
+        if (wolf.wolfParameters.GetMaxTimeWaitPatrol() > timeStartMove)
         {
             timeStartMove += Time.deltaTime;
-            wolf.GetEnemyAI().SetIsStop(true);
+            wolf.enemyAI.SetIsStop(true);
         }
         else
         {
             timeStartMove = 0;
-            wolf.GetEnemyPatrulsPoint().SelectPoint();
-            wolf.GetEnemyAI().SetIsStop(false);
-            wolf.GetEnemyAI().SetCurrentPoint(wolf.GetEnemyPatrulsPoint().GetActivePoint());
+            wolf.enemyPatrulsPoint.SelectPoint();
+            wolf.enemyAI.SetIsStop(false);
+            wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
         }
     }
 }

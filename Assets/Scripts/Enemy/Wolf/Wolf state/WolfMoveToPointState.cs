@@ -5,33 +5,32 @@ using UnityEngine.UIElements;
 
 public class WolfMoveToPointState : WolfState
 {
-    private float maxTimeWait = 10;
     private float timeStartMove;
     private Vector3 position;
 
     public override void EnterState(WolfStateManager wolf)
     {
-        wolf.GetEnemyBeside().enabled = true;
-        wolf.GetEnemyVision().enabled = true;
-        wolf.GetEnemySerch().enabled = false;
-        wolf.GetEnemyAI().SetIsStop(false);
-        position = (wolf.GetEnemyPatrulsPoint().GetPlayerTransform().position);
+        wolf.enemyBeside.enabled = true;
+        wolf.enemyVision.enabled = true;
+        wolf.enemySerch.enabled = false;
+        wolf.enemyAI.SetIsStop(false);
+        position = wolf.enemyPatrulsPoint.GetPlayerTransform().position;
         timeStartMove = 0;
     }
 
     public override void OnUpdateState(WolfStateManager wolf)
     {
-        if (wolf.GetEnemyBeside().IsNear() || wolf.GetEnemyVision().IsSeePlayer())
+        if (wolf.enemyBeside.IsNear() || wolf.enemyVision.IsSeePlayer())
         {
             wolf.SwithcState(wolf.wolfMoveToPlayer);
         }
 
-        if (Vector3.Distance(wolf.transform.position, position) <= wolf.GetEnemyAI().GetNavMeshAgent().stoppingDistance)
+        if (Vector3.Distance(wolf.transform.position, position) <= wolf.enemyAI.GetNavMeshAgent().stoppingDistance)
         {
             WaitToStartMove(wolf);
         }
 
-        wolf.GetEnemyAI().SetCurrentPoint(position);
+        wolf.enemyAI.SetCurrentPoint(position);
     }
 
     public override void OnCollisionState(WolfStateManager wolf, Collision collision)
@@ -41,10 +40,10 @@ public class WolfMoveToPointState : WolfState
 
     private void WaitToStartMove(WolfStateManager wolf)
     {
-        if (maxTimeWait > timeStartMove)
+        if (wolf.wolfParameters.GetMaxTimeWaitToLostPoint() > timeStartMove)
         {
             timeStartMove += Time.deltaTime;
-            wolf.GetEnemyAI().SetIsStop(true);
+            wolf.enemyAI.SetIsStop(true);
         }
         else
         {
