@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     private Transform currentPoint;
     private Vector3 currentPosition;
 
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
@@ -44,6 +44,11 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent GetNavMeshAgent()
     {
         return agent;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        agent.speed = speed;
     }
 
     public void SetIsStop(bool isStop)

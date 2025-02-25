@@ -20,14 +20,17 @@ public class WolfStateManager : MonoBehaviour
 
     private void Start()
     {
-        FindAnyObjectByType<EnemyManager>().AddToWolfs(this);
+        EnemyManager.Instance.AddToWolfs(this);
         enemyVision = GetComponentInChildren<EnemyVision>();
         enemyBeside = GetComponent<EnemyBeside>();
         enemyAI = GetComponent<EnemyAI>();
         enemyPatrulsPoint = GetComponent<EnemyPatrulsPoint>();
         enemySerch = GetComponent<EnemySerch>();
         wolfParameters = GetComponent<WolfParameters>();
-        currentState = wolfPatruleState;
+        
+        enemyAI.SetSpeed(wolfParameters.GetPatruleSpeed());
+        
+        SwithcState(wolfPatruleState);
         currentState.EnterState(this);
     }
 
@@ -48,8 +51,16 @@ public class WolfStateManager : MonoBehaviour
         Debug.Log(currentState);
     }
 
+    public void SwithcMoveToPointState()
+    {
+        if(currentState != wolfMoveToPlayer || currentState != wolfAttackState)
+        {
+            SwithcState(wolfMoveToPointState);
+        }
+    }
+
     private void OnDestroy()
     {
-        FindAnyObjectByType<EnemyManager>().RemoveWolf(this);
+        EnemyManager.Instance.RemoveWolf(this);
     }
 }

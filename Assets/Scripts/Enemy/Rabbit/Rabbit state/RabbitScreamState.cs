@@ -55,7 +55,7 @@ public class RabbitScreamState : RabbitState
             {
                 if (Vector3.Distance(wolf.transform.position, screamPosition) <= radius)
                 {
-                    // wolf.GoToScream(screamPosition);
+                    wolf.SwithcMoveToPointState();
                 }
             }
         }

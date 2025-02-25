@@ -6,6 +6,8 @@ public class MimicParameter : MonoBehaviour
 {
     [SerializeField] protected float maxTimeWaitPatrol = 10;
     [SerializeField] protected float maxTimeWaitToLostPoint = 10;
+    [SerializeField] protected float patruleSpeed = 5;
+    [SerializeField] protected float attackSpeed = 10;
 
     public float GetMaxTimeWaitPatrol()
     {
@@ -15,5 +17,15 @@ public class MimicParameter : MonoBehaviour
     public float GetMaxTimeWaitToLostPoint()
     {
         return maxTimeWaitToLostPoint;
+    }
+
+    public float GetAttackSpeed()
+    {
+        return attackSpeed;
+    }
+
+    public float GetPatruleSpeed() 
+    { 
+        return patruleSpeed;
     }
 }

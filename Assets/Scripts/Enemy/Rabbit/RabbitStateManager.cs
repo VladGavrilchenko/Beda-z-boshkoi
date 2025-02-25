@@ -27,6 +27,8 @@ public class RabbitStateManager : MonoBehaviour
         audioSource = GetComponentInChildren<AudioSource>();
         cameraShake = FindAnyObjectByType<CameraShake>();
         rabbitParameter = GetComponent<RabbitParameter>();
+
+        enemyAI.SetSpeed(rabbitParameter.GetPatruleSpeed());
         SwithcState(rabbitPatruleState);
     }
 

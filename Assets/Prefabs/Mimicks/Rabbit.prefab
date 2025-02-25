@@ -63,7 +63,6 @@ GameObject:
   - component: {fileID: 5953822230512022883}
   - component: {fileID: 2325865200277240844}
   - component: {fileID: 1416010638097742728}
-  - component: {fileID: 3546154844145054567}
   - component: {fileID: 4820648228723151919}
   - component: {fileID: 8936916498084640080}
   - component: {fileID: 7840739537588005304}
@@ -190,19 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints: []
---- !u!114 &3546154844145054567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004857155339768291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc31fdfcaa3a92a45a1adf523d33cdc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDamage: 10
 --- !u!114 &4820648228723151919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70e2182dea81584c83ccdb6fff84792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxTimeWaitPatrol: 10
+  maxTimeWaitToLostPoint: 10
   maxDistanceToShake: 10
+  maxDistanceScream: 1000
 --- !u!1 &7438016283465425919
 GameObject:
   m_ObjectHideFlags: 0

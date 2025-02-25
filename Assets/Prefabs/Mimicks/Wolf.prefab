@@ -64,10 +64,10 @@ GameObject:
   - component: {fileID: 4767734879588115763}
   - component: {fileID: 2325865200277240844}
   - component: {fileID: 1416010638097742728}
-  - component: {fileID: 3546154844145054567}
   - component: {fileID: 4820648228723151919}
   - component: {fileID: 8936916498084640080}
   - component: {fileID: 7840739537588005304}
+  - component: {fileID: 1363802905618676734}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Wolf
@@ -200,19 +200,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints: []
---- !u!114 &3546154844145054567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004857155339768291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc31fdfcaa3a92a45a1adf523d33cdc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDamage: 10
 --- !u!114 &4820648228723151919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,3 +247,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1363802905618676734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004857155339768291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd945eda3da16a640a0d621cc4a1bfff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTimeWaitPatrol: 10
+  maxTimeWaitToLostPoint: 10
+  patruleSpeed: 5
+  attackSpeed: 20
+  playerDamage: 0

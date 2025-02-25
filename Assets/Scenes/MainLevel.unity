@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: b73c59ac2d2c7094b9ab02a5753eccbb,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -11643,7 +11644,7 @@ Transform:
   m_GameObject: {fileID: 1901022673}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7742225, z: -0, w: 0.63291353}
-  m_LocalPosition: {x: -0.063, y: 1.128, z: -1.7}
+  m_LocalPosition: {x: -0.063, y: 1.128, z: 1.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13660,7 +13661,7 @@ PrefabInstance:
     - target: {fileID: 8529555042664774121, guid: f72cfa22510beaf41969560168247683,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.92
+      value: 17.24
       objectReference: {fileID: 0}
     - target: {fileID: 8529555042664774121, guid: f72cfa22510beaf41969560168247683,
         type: 3}
@@ -13715,7 +13716,7 @@ PrefabInstance:
     - target: {fileID: 9162633065216908544, guid: f72cfa22510beaf41969560168247683,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
