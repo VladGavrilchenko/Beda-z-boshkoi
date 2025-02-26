@@ -52,7 +52,10 @@ public class PhotoCamera : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isHoldingCamera && countPhoto > 0)
         {
-            TakePhoto();
+            if(animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Animator.StringToHash("shotPlayerAnimation") == false)
+            {
+                TakePhoto();
+            }
         }
     }
 

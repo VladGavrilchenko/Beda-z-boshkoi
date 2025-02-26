@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject settingPanel;
-    
+    private Setting setting;
+
     private void Start()
     {
         Cursor.visible=true;
         Cursor.lockState = CursorLockMode.None;
+        setting = FindFirstObjectByType<Setting>();
         SetSettingPanel(false);
     }
 
