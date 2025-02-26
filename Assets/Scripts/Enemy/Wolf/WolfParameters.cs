@@ -5,7 +5,7 @@ using UnityEngine;
 public class WolfParameters : MimicParameter
 {
     [SerializeField] private float playerDamage;
-
+   
     public float TakeDamageAndDead()
     {
         Destroy(gameObject);

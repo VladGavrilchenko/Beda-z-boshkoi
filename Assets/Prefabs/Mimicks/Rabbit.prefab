@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8454912462693018872}
   - component: {fileID: 8009987449726886867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eyas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 7840739537588005304}
   - component: {fileID: 298746242928943323}
   - component: {fileID: 2363183480435774521}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,8 +262,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTimeWaitPatrol: 10
   maxTimeWaitToLostPoint: 10
+  patruleSpeed: 5
+  attackSpeed: 0
   maxDistanceToShake: 10
-  maxDistanceScream: 1000
+  maxDistanceScream: 20
 --- !u!1 &7438016283465425919
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2260816455812629982}
   - component: {fileID: 4967905252258541951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}

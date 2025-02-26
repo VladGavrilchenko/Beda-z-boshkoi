@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8454912462693018872}
   - component: {fileID: 8009987449726886867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eyas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 8936916498084640080}
   - component: {fileID: 7840739537588005304}
   - component: {fileID: 1363802905618676734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wolf
   m_TagString: Wolf
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 1000
-  m_StoppingDistance: 2
+  m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6364badea80d9a4cacbf2d7a728e339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 5
+  detectionRange: 8
 --- !u!65 &7840739537588005304
 BoxCollider:
   m_ObjectHideFlags: 0

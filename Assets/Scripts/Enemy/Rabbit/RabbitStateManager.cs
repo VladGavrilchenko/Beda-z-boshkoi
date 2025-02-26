@@ -19,6 +19,7 @@ public class RabbitStateManager : MonoBehaviour
 
     private void Start()
     {
+        EnemyManager.Instance.AddToRabbits(this);
         enemyVision = GetComponentInChildren<EnemyVision>();
         enemyBeside = GetComponent<EnemyBeside>();
         enemyAI = GetComponent<EnemyAI>();
@@ -41,5 +42,10 @@ public class RabbitStateManager : MonoBehaviour
     {
         currentState = state;
         currentState.EnterState(this);
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManager.Instance.RemoveRabbit(this);
     }
 }

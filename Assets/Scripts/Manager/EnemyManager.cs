@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     private List<WolfStateManager> wolfs = new List<WolfStateManager>();
     private List<CatStateManager> cats = new List<CatStateManager>();
+    private List<RabbitStateManager> rabbits = new List<RabbitStateManager>();
 
     public static EnemyManager Instance { get; private set; }
 
@@ -43,6 +45,17 @@ public class EnemyManager : MonoBehaviour
         cats.Remove(removeCat);
     }
 
+    public void AddToRabbits(RabbitStateManager rabbit)
+    {
+        if (!rabbits.Contains(rabbit))
+            rabbits.Add(rabbit);
+    }
+
+    public void RemoveRabbit(RabbitStateManager rabbit)
+    {
+        rabbits.Remove(rabbit);
+    }
+
     public List<WolfStateManager> GetWolfs()
     {
         return wolfs;
@@ -51,5 +64,10 @@ public class EnemyManager : MonoBehaviour
     public List<CatStateManager> GetCats()
     {
         return cats;
+    }
+
+    public List<RabbitStateManager> GetRabbits()
+    {
+        return rabbits;
     }
 }
