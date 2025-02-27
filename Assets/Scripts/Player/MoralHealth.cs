@@ -103,5 +103,10 @@ public class MoralHealth : MonoBehaviour
             WolfParameters wolfParameters = other.gameObject.GetComponent<WolfParameters>();
             SubtractMoral(wolfParameters.TakeDamageAndDead());
         }
+
+        if (other.gameObject.CompareTag("Cat"))
+        {
+
+        }
     }
 }

@@ -30,7 +30,7 @@ public class RabbitStateManager : MonoBehaviour
         rabbitParameter = GetComponent<RabbitParameter>();
 
         enemyAI.SetSpeed(rabbitParameter.GetPatruleSpeed());
-        SwithcState(rabbitPatruleState);
+        SwitchState(rabbitPatruleState);
     }
 
     private void Update()
@@ -38,7 +38,7 @@ public class RabbitStateManager : MonoBehaviour
         currentState.OnUpdateState(this);
     }
 
-    public void SwithcState(RabbitState state)
+    public void SwitchState(RabbitState state)
     {
         currentState = state;
         currentState.EnterState(this);

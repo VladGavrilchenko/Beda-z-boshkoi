@@ -263,4 +263,6 @@ MonoBehaviour:
   maxTimeWaitToLostPoint: 10
   patruleSpeed: 5
   attackSpeed: 20
-  playerDamage: 0
+  playerDamage: 10
+  patruleStopDistance: 0
+  moveToPlayerStopDistance: 0

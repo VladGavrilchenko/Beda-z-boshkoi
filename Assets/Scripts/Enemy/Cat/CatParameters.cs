@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WolfParameters : MimicParameter
+public class CatParameters : MimicParameter
 {
-    [SerializeField] private float playerDamage;
-    [SerializeField] private float patruleStopDistance;
+    [SerializeField] private float maxStayTime;
     [SerializeField] private float moveToPlayerStopDistance;
-
-    public float TakeDamageAndDead()
-    {
-        Destroy(gameObject);
-        return playerDamage;
-    }
+    [SerializeField] private float patruleStopDistance;
 
     public float GetMoveToPlayerStopDistance()
     {
         return moveToPlayerStopDistance;
     }
 
+    public float GetMaxStayTime()
+    {
+        return maxStayTime;
+    }
 
     public float GetPatruleStopDistance()
     {

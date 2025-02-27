@@ -2,43 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatMoveToPointState : CatState
+public class CatStayState : CatState
 {
-    private Vector3 position;
+    private float timeStartMove;
 
     public override void EnterState(CatStateManager cat)
     {
+        cat.enemyAI.SetIsStop(true);
         cat.enemyBeside.enabled = true;
         cat.enemyVision.enabled = true;
         cat.enemySerch.enabled = false;
-        cat.enemyAI.SetIsStop(false);
-        cat.enemyAI.SetStopDistance(cat.catParameters.GetPatruleStopDistance());
-        position = cat.enemyPatrulsPoint.GetPlayerTransform().position;
+        timeStartMove = 0;
+        cat.SetMimick(true);
     }
+
 
     public override void OnUpdateState(CatStateManager cat)
     {
         if (cat.enemyBeside.IsNear() || cat.enemyVision.IsSeePlayer())
         {
+            cat.SetMimick(false);
             cat.SwitchState(cat.catMoveToPlayer);
         }
-
-        if (Vector3.Distance(cat.transform.position, position) <= cat.enemyAI.GetNavMeshAgent().stoppingDistance)
+        else
         {
-            StartStay(cat);
+            WaitToStartMove(cat);
         }
-
-        cat.enemyAI.SetCurrentPoint(position);
     }
+
 
     public override void OnCollisionState(CatStateManager cat, Collision collision)
     {
 
     }
 
-
-    private void StartStay(CatStateManager cat)
+    private void WaitToStartMove(CatStateManager cat)
     {
-        cat.SwitchState(cat.catStayState);
+        if (cat.catParameters.GetMaxStayTime() > timeStartMove)
+        {
+            timeStartMove += Time.deltaTime;
+            cat.enemyAI.SetIsStop(true);
+        }
+        else
+        {
+            cat.SwitchState(cat.catPatruleState);
+        }
     }
 }

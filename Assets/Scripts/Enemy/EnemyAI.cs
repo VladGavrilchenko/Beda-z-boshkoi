@@ -29,6 +29,11 @@ public class EnemyAI : MonoBehaviour
         agent.SetDestination(currentPosition);
     }
 
+    public void SetStopDistance(float stoppingDistance)
+    {
+        agent.stoppingDistance = stoppingDistance;
+    }
+
     public void SetCurrentPoint(Transform newCurrentPoint)
     {
         currentPoint = newCurrentPoint;

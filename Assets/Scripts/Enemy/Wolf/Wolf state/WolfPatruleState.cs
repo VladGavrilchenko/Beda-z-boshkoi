@@ -11,6 +11,8 @@ public class WolfPatruleState : WolfState
         wolf.enemyPatrulsPoint.SelectPoint();
         wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
         wolf.enemyAI.SetIsStop(false);
+        wolf.enemyAI.SetStopDistance(wolf.wolfParameters.GetPatruleStopDistance());
+
         wolf.enemyBeside.enabled = true;
         wolf.enemyVision.enabled = true;
         wolf.enemySerch.enabled = false;
@@ -26,7 +28,7 @@ public class WolfPatruleState : WolfState
 
         if (wolf.enemyBeside.IsNear() || wolf.enemyVision.IsSeePlayer())
         {
-            wolf.SwithcState(wolf.wolfMoveToPlayer);
+            wolf.SwitchState(wolf.wolfMoveToPlayer);
         }
         wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
 

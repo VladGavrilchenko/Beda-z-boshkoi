@@ -29,8 +29,8 @@ public class WolfStateManager : MonoBehaviour
         wolfParameters = GetComponent<WolfParameters>();
         
         enemyAI.SetSpeed(wolfParameters.GetPatruleSpeed());
-        
-        SwithcState(wolfPatruleState);
+
+        SwitchState(wolfPatruleState);
         currentState.EnterState(this);
     }
 
@@ -44,7 +44,7 @@ public class WolfStateManager : MonoBehaviour
         currentState.OnCollisionState(this, collision);
     }
 
-    public void SwithcState(WolfState state)
+    public void SwitchState(WolfState state)
     {
         currentState = state;
         currentState.EnterState(this);
@@ -55,7 +55,7 @@ public class WolfStateManager : MonoBehaviour
     {
         if(currentState != wolfMoveToPlayer || currentState != wolfAttackState)
         {
-            SwithcState(wolfMoveToPointState);
+            SwitchState(wolfMoveToPointState);
         }
     }
 

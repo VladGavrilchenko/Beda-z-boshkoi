@@ -20,7 +20,7 @@ public class RabbitScreamState : RabbitState
         if (rabbit.enemySerch.IsNear() == false && rabbit.audioSource.isPlaying == false)
         {
             rabbit.audioSource.loop = false;
-            rabbit.SwithcState(rabbit.rabbitPatruleState);
+            rabbit.SwitchState(rabbit.rabbitPatruleState);
         }
         else if (rabbit.audioSource.isPlaying == false)
         {

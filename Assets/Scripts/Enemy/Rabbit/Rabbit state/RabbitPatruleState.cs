@@ -26,7 +26,7 @@ public class RabbitPatruleState : RabbitState
 
         if (rabbit.enemyBeside.IsNear() || rabbit.enemyVision.IsSeePlayer())
         {
-            rabbit.SwithcState(rabbit.rabbitScreamState);
+            rabbit.SwitchState(rabbit.rabbitScreamState);
         }
         rabbit.enemyAI.SetCurrentPoint(rabbit.enemyPatrulsPoint.GetActivePoint());
 

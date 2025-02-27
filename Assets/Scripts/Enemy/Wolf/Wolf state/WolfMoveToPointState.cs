@@ -22,7 +22,7 @@ public class WolfMoveToPointState : WolfState
     {
         if (wolf.enemyBeside.IsNear() || wolf.enemyVision.IsSeePlayer())
         {
-            wolf.SwithcState(wolf.wolfMoveToPlayer);
+            wolf.SwitchState(wolf.wolfMoveToPlayer);
         }
 
         if (Vector3.Distance(wolf.transform.position, position) <= wolf.enemyAI.GetNavMeshAgent().stoppingDistance)
@@ -48,7 +48,7 @@ public class WolfMoveToPointState : WolfState
         else
         {
             timeStartMove = 0;
-            wolf.SwithcState(wolf.wolfPatruleState);
+            wolf.SwitchState(wolf.wolfPatruleState);
         }
     }
 }
