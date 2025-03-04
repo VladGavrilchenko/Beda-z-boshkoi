@@ -28,7 +28,7 @@ public class CatMoveToPointState : CatState
             StartStay(cat);
         }
 
-        cat.enemyAI.SetCurrentPoint(position);
+       // cat.enemyAI.SetCurrentPoint(position);
     }
 
     public override void OnCollisionState(CatStateManager cat, Collision collision)

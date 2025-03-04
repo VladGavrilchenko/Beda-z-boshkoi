@@ -25,16 +25,10 @@ public class RabbitScreamState : RabbitState
         else if (rabbit.audioSource.isPlaying == false)
         {
             rabbit.audioSource.Play();
-        }
-
-
-        checkTimer -= Time.deltaTime;
-
-        if (checkTimer <= 0f)
-        {
-            checkTimer = checkInterval;
             AlertEnemies(rabbit.transform.position, rabbit.rabbitParameter.GetMaxDistanceScream());
         }
+
+
 
         if (Vector3.Distance(rabbit.enemyPatrulsPoint.GetPlayerTransform().position, rabbit.transform.position) < rabbit.rabbitParameter.GetMaxDistanceToShake())
         {

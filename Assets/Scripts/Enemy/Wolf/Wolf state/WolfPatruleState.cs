@@ -17,6 +17,8 @@ public class WolfPatruleState : WolfState
         wolf.enemyVision.enabled = true;
         wolf.enemySerch.enabled = false;
         timeStartMove = 0;
+        wolf.enemyAI.Move();
+
     }
 
     public override void OnUpdateState(WolfStateManager wolf)
@@ -24,13 +26,15 @@ public class WolfPatruleState : WolfState
         if (Vector3.Distance(wolf.transform.position, wolf.enemyPatrulsPoint.GetActivePoint().position) <= wolf.enemyAI.GetNavMeshAgent().stoppingDistance)
         {
             WaitToStartMove(wolf);
+
         }
+
 
         if (wolf.enemyBeside.IsNear() || wolf.enemyVision.IsSeePlayer())
         {
             wolf.SwitchState(wolf.wolfMoveToPlayer);
         }
-        wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
+
 
     }
 
@@ -52,6 +56,7 @@ public class WolfPatruleState : WolfState
             wolf.enemyPatrulsPoint.SelectPoint();
             wolf.enemyAI.SetIsStop(false);
             wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
+            wolf.enemyAI.Move();
         }
     }
 }

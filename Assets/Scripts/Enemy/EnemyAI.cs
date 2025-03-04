@@ -1,32 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class EnemyAI : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private bool isStop;
-    private bool isMoveToTransform;
-    private Transform currentPoint;
-    private Vector3 currentPosition;
+    private Transform target;
+    private bool isFollowing;
+    private Coroutine followCoroutine;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    void Update()
+    public void Move()
     {
-        agent.isStopped = isStop;
-
-        if (isMoveToTransform)
+        if (agent.enabled && agent.isOnNavMesh && target != null)
         {
-            currentPosition = currentPoint.position;
+            agent.SetDestination(target.position);
         }
-
-        agent.SetDestination(currentPosition);
     }
 
     public void SetStopDistance(float stoppingDistance)
@@ -36,14 +29,7 @@ public class EnemyAI : MonoBehaviour
 
     public void SetCurrentPoint(Transform newCurrentPoint)
     {
-        currentPoint = newCurrentPoint;
-        isMoveToTransform = true;
-    }
-
-    public void SetCurrentPoint(Vector3 newCurrentPosition)
-    {
-        currentPosition = newCurrentPosition;
-        isMoveToTransform = false;
+        target = newCurrentPoint;
     }
 
     public NavMeshAgent GetNavMeshAgent()
@@ -58,6 +44,37 @@ public class EnemyAI : MonoBehaviour
 
     public void SetIsStop(bool isStop)
     {
-        this.isStop = isStop;
+        agent.isStopped = isStop;
+    }
+
+    public void StartFollowing(Transform playerTransform)
+    {
+        if (isFollowing) return; // Запобігає повторному запуску
+        target = playerTransform;
+        isFollowing = true;
+        followCoroutine = StartCoroutine(UpdateDestination());
+    }
+
+    public void StopFollowing()
+    {
+        isFollowing = false;
+        if (followCoroutine != null)
+        {
+            StopCoroutine(followCoroutine);
+            followCoroutine = null;
+        }
+        agent.ResetPath();
+    }
+
+    private IEnumerator UpdateDestination()
+    {
+        while (isFollowing)
+        {
+            if (target != null && agent.enabled && agent.isOnNavMesh)
+            {
+                agent.SetDestination(target.position);
+            }
+            yield return new WaitForSeconds(0.5f); // Рідше оновлюємо ціль
+        }
     }
 }

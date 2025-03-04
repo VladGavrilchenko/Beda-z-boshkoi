@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b493e9758060184caf4b3b505b24b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 7
+  visionRange: 3.96
   visionAngle: 60
   obstacleMask:
     serializedVersion: 2
@@ -175,6 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1534a6e70c601e245a6abc7b4058307c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lostPoint: {fileID: 8893654422903400139, guid: 96d1ac0fcd7fcb54693fb41792b88925,
+    type: 3}
 --- !u!114 &2325865200277240844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e281cf4bd4c194495c511ba25166b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serchRange: 12.6
+  serchRange: 7
 --- !u!114 &8936916498084640080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6364badea80d9a4cacbf2d7a728e339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 8
+  detectionRange: 4.53
 --- !u!65 &7840739537588005304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,10 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd945eda3da16a640a0d621cc4a1bfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeWaitPatrol: 10
+  maxTimeWaitPatrol: 1
   maxTimeWaitToLostPoint: 10
   patruleSpeed: 5
   attackSpeed: 20
   playerDamage: 10
-  patruleStopDistance: 0
+  patruleStopDistance: 8
   moveToPlayerStopDistance: 0

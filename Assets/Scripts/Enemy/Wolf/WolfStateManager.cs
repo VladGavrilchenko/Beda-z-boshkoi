@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class WolfStateManager : MonoBehaviour
 {
+    [SerializeField] private GameObject lostPoint;
+    private GameObject tempObject;
+
     public WolfMoveToPlayer wolfMoveToPlayer = new WolfMoveToPlayer();
     public WolfAttackState wolfAttackState= new WolfAttackState();
     public WolfPatruleState wolfPatruleState = new WolfPatruleState();
@@ -28,8 +31,8 @@ public class WolfStateManager : MonoBehaviour
         enemySerch = GetComponent<EnemySerch>();
         wolfParameters = GetComponent<WolfParameters>();
         
-        enemyAI.SetSpeed(wolfParameters.GetPatruleSpeed());
 
+        enemyAI.SetSpeed(wolfParameters.GetPatruleSpeed());
         SwitchState(wolfPatruleState);
         currentState.EnterState(this);
     }
@@ -53,10 +56,27 @@ public class WolfStateManager : MonoBehaviour
 
     public void SwithcMoveToPointState()
     {
+        if (currentState == wolfMoveToPointState)
+        {
+            return;
+        }
+
         if(currentState != wolfMoveToPlayer || currentState != wolfAttackState)
         {
             SwitchState(wolfMoveToPointState);
         }
+    }
+
+    public Transform SpawnMovePoint(Vector3 lostPointPosition)
+    {
+        tempObject = Instantiate(lostPoint,lostPointPosition, Quaternion.identity);
+
+        return tempObject.transform;
+    }
+
+    public void DestroyTempObject()
+    {
+        Destroy(tempObject);
     }
 
     private void OnDestroy()

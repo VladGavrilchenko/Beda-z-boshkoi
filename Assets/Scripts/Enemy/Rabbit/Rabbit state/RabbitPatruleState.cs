@@ -28,8 +28,8 @@ public class RabbitPatruleState : RabbitState
         {
             rabbit.SwitchState(rabbit.rabbitScreamState);
         }
-        rabbit.enemyAI.SetCurrentPoint(rabbit.enemyPatrulsPoint.GetActivePoint());
 
+        rabbit.enemyAI.SetCurrentPoint(rabbit.enemyPatrulsPoint.GetActivePoint());
     }
 
     public override void OnCollisionState(RabbitStateManager rabbit, Collision collision)
