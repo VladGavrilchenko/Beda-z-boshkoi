@@ -56,15 +56,11 @@ public class WolfStateManager : MonoBehaviour
 
     public void SwithcMoveToPointState()
     {
-        if (currentState == wolfMoveToPointState)
+        if (currentState == wolfMoveToPointState && currentState != wolfMoveToPlayer && currentState != wolfAttackState)
         {
             return;
         }
-
-        if(currentState != wolfMoveToPlayer || currentState != wolfAttackState)
-        {
-            SwitchState(wolfMoveToPointState);
-        }
+        SwitchState(wolfMoveToPointState);
     }
 
     public Transform SpawnMovePoint(Vector3 lostPointPosition)

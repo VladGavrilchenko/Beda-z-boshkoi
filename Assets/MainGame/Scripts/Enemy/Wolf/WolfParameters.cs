@@ -5,7 +5,6 @@ using UnityEngine;
 public class WolfParameters : MimicParameter
 {
     [SerializeField] private float playerDamage;
-    [SerializeField] private float patruleStopDistance;
     [SerializeField] private float moveToPlayerStopDistance;
 
     public float TakeDamageAndDead()
@@ -20,8 +19,4 @@ public class WolfParameters : MimicParameter
     }
 
 
-    public float GetPatruleStopDistance()
-    {
-        return patruleStopDistance;
-    }
 }

@@ -1,40 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class WolfPatruleState : WolfState
+public class WolfMoveToPointState : WolfState
 {
     private float timeStartMove;
+    private Transform lostTarget;
 
     public override void EnterState(WolfStateManager wolf)
     {
-        wolf.enemyPatrulsPoint.SelectPoint();
-        wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
-        wolf.enemyAI.SetIsStop(false);
-        wolf.enemyAI.SetStopDistance(wolf.wolfParameters.GetPatruleStopDistance());
-
         wolf.enemyBeside.enabled = true;
         wolf.enemyVision.enabled = true;
         wolf.enemySerch.enabled = false;
-        timeStartMove = 0;
-        wolf.enemyAI.Move();
 
+
+        lostTarget = wolf.SpawnMovePoint(wolf.enemyPatrulsPoint.GetPlayerTransform().position);
+        timeStartMove = 0;
+
+        wolf.enemyAI.SetIsStop(false);
+        wolf.enemyAI.SetStopDistance(wolf.wolfParameters.GetPatruleStopDistance());
+        wolf.enemyAI.SetCurrentPoint(lostTarget);
+        wolf.enemyAI.Move();
     }
 
     public override void OnUpdateState(WolfStateManager wolf)
     {
-        if (Vector3.Distance(wolf.transform.position, wolf.enemyPatrulsPoint.GetActivePoint().position) <= wolf.enemyAI.GetNavMeshAgent().stoppingDistance)
-        {
-            WaitToStartMove(wolf);
-
-        }
-
-
         if (wolf.enemyBeside.IsNear() || wolf.enemyVision.IsSeePlayer())
         {
             wolf.SwitchState(wolf.wolfMoveToPlayer);
         }
 
+        if (Vector3.Distance(wolf.transform.position, lostTarget.position) <= wolf.enemyAI.GetNavMeshAgent().stoppingDistance)
+        {
+            WaitToStartMove(wolf);
+        }
 
     }
 
@@ -45,7 +45,7 @@ public class WolfPatruleState : WolfState
 
     private void WaitToStartMove(WolfStateManager wolf)
     {
-        if (wolf.wolfParameters.GetMaxTimeWaitPatrol() > timeStartMove)
+        if (wolf.wolfParameters.GetTimeWaitToLostPoint() > timeStartMove)
         {
             timeStartMove += Time.deltaTime;
             wolf.enemyAI.SetIsStop(true);
@@ -53,10 +53,8 @@ public class WolfPatruleState : WolfState
         else
         {
             timeStartMove = 0;
-            wolf.enemyPatrulsPoint.SelectPoint();
-            wolf.enemyAI.SetIsStop(false);
-            wolf.enemyAI.SetCurrentPoint(wolf.enemyPatrulsPoint.GetActivePoint());
-            wolf.enemyAI.Move();
+            wolf.DestroyTempObject();
+            wolf.SwitchState(wolf.wolfPatruleState);
         }
     }
 }

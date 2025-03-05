@@ -6,7 +6,6 @@ public class CatParameters : MimicParameter
 {
     [SerializeField] private float maxStayTime;
     [SerializeField] private float moveToPlayerStopDistance;
-    [SerializeField] private float patruleStopDistance;
 
     public float GetMoveToPlayerStopDistance()
     {
@@ -18,8 +17,5 @@ public class CatParameters : MimicParameter
         return maxStayTime;
     }
 
-    public float GetPatruleStopDistance()
-    {
-        return patruleStopDistance;
-    }
+
 }

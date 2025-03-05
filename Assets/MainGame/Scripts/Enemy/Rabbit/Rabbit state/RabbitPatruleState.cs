@@ -8,13 +8,20 @@ public class RabbitPatruleState : RabbitState
 
     public override void EnterState(RabbitStateManager rabbit)
     {
+        rabbit.rabbitParameter.RandomPatruleStopDistance();
+        rabbit.rabbitParameter.RandomTimeWaitPatrol();
+        rabbit.enemyAI.SetStopDistance(rabbit.rabbitParameter.GetPatruleStopDistance());
+
         rabbit.enemyPatrulsPoint.SelectPoint();
         rabbit.enemyAI.SetCurrentPoint(rabbit.enemyPatrulsPoint.GetActivePoint());
         rabbit.enemyAI.SetIsStop(false);
+
         rabbit.enemyBeside.enabled = true;
         rabbit.enemyVision.enabled = true;
         rabbit.enemySerch.enabled = false;
         timeStartMove = 0;
+
+        rabbit.enemyAI.Move();
     }
 
     public override void OnUpdateState(RabbitStateManager rabbit)
@@ -28,8 +35,6 @@ public class RabbitPatruleState : RabbitState
         {
             rabbit.SwitchState(rabbit.rabbitScreamState);
         }
-
-        rabbit.enemyAI.SetCurrentPoint(rabbit.enemyPatrulsPoint.GetActivePoint());
     }
 
     public override void OnCollisionState(RabbitStateManager rabbit, Collision collision)
@@ -39,7 +44,7 @@ public class RabbitPatruleState : RabbitState
 
     private void WaitToStartMove(RabbitStateManager rabbit)
     {
-        if (rabbit.rabbitParameter.GetMaxTimeWaitPatrol() > timeStartMove)
+        if (rabbit.rabbitParameter.GetTimeWaitPatrol() > timeStartMove)
         {
             timeStartMove += Time.deltaTime;
             rabbit.enemyAI.SetIsStop(true);
@@ -47,9 +52,14 @@ public class RabbitPatruleState : RabbitState
         else
         {
             timeStartMove = 0;
+            rabbit.rabbitParameter.RandomPatruleStopDistance();
+            rabbit.rabbitParameter.RandomTimeWaitPatrol();
             rabbit.enemyPatrulsPoint.SelectPoint();
+
+            rabbit.enemyAI.SetStopDistance(rabbit.rabbitParameter.GetPatruleStopDistance());
             rabbit.enemyAI.SetIsStop(false);
             rabbit.enemyAI.SetCurrentPoint(rabbit.enemyPatrulsPoint.GetActivePoint());
+            rabbit.enemyAI.Move();
         }
     }
 }

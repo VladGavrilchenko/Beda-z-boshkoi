@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RabbitScreamState : RabbitState
 {
-    private const float checkInterval = 1f;
-    private float checkTimer = 0f;
 
     public override void EnterState(RabbitStateManager rabbit)
     {

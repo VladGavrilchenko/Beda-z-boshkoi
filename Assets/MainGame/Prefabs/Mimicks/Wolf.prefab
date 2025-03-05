@@ -261,10 +261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd945eda3da16a640a0d621cc4a1bfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeWaitPatrol: 1
+  minTimeWaitPatrol: 3
+  maxTimeWaitPatrol: 7
+  minTimeWaitToLostPoint: 5
   maxTimeWaitToLostPoint: 10
+  minPatruleStopDistance: 3
+  maxPatruleStopDistance: 7
   patruleSpeed: 5
   attackSpeed: 20
   playerDamage: 10
-  patruleStopDistance: 8
   moveToPlayerStopDistance: 0

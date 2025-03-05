@@ -14448,13 +14448,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655a6a16be73a0640b41e5caaa37153a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTimeWaitPatrol: 3
   maxTimeWaitPatrol: 10
+  minTimeWaitToLostPoint: 3
   maxTimeWaitToLostPoint: 10
+  minPatruleStopDistance: 3
+  maxPatruleStopDistance: 10
   patruleSpeed: 5
   attackSpeed: 10
   maxStayTime: 30
   moveToPlayerStopDistance: 0
-  patruleStopDistance: 4
 --- !u!114 &1302528250805545053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14824,7 +14827,7 @@ PrefabInstance:
     - target: {fileID: 9162633065216908544, guid: f72cfa22510beaf41969560168247683,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
