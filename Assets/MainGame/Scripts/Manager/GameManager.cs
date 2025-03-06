@@ -15,5 +15,10 @@ public class GameManager : MonoBehaviour
         currentMission = indxMission;
     }
 
+    public void SetNextMissionText(string text)
+    {
+        missionText.text = text;
+    }
+
     public int GetCurrentMission() { return currentMission; }
 }

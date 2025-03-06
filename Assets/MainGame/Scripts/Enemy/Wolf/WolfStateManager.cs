@@ -56,7 +56,7 @@ public class WolfStateManager : MonoBehaviour
 
     public void SwithcMoveToPointState()
     {
-        if (currentState == wolfMoveToPointState && currentState != wolfMoveToPlayer && currentState != wolfAttackState)
+        if (currentState == wolfMoveToPointState && currentState == wolfMoveToPlayer && currentState == wolfAttackState)
         {
             return;
         }

@@ -20,12 +20,16 @@ public class ToyInteractive : SayingInteractive
     {
         base.Interact();
 
-        for (int i = 0; i < mimicRandomizers.Count; i++)
+        if (mimicRandomizers != null)
         {
-            mimicRandomizers[i].enabled = true;
-            mimicRandomizers[i].ActiveMimick();
+            for (int i = 0; i < mimicRandomizers.Count; i++)
+            {
+                mimicRandomizers[i].enabled = true;
+                mimicRandomizers[i].ActiveMimick();
+            }
         }
 
+        FindAnyObjectByType<ToyManager>().AddToCount();
         Destroy(gameObject);
     }
 }

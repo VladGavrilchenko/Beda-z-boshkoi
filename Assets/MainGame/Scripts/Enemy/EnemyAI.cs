@@ -1,24 +1,40 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] private float recalcInterval = 0.5f;
+    private Vector3 movePos;
     private NavMeshAgent agent;
     private Transform target;
     private bool isFollowing;
-    private Coroutine followCoroutine;
+    private float recalcTimer;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent компонент відсутній!");
+        }
     }
 
-    public void Move()
+    void Update()
     {
-        if (agent.enabled && agent.isOnNavMesh && target != null)
+        if (isFollowing && agent.enabled && target != null)
         {
-            agent.SetDestination(target.position);
+            if (!agent.isOnNavMesh)
+            {
+                return;
+            }
+
+            recalcTimer -= Time.deltaTime;
+            if (recalcTimer <= 0f)
+            {
+                movePos = target.position;
+                agent.SetDestination(movePos);
+                recalcTimer = recalcInterval;
+            }
         }
     }
 
@@ -49,32 +65,22 @@ public class EnemyAI : MonoBehaviour
 
     public void StartFollowing(Transform playerTransform)
     {
-        if (isFollowing) return; // Запобігає повторному запуску
         target = playerTransform;
         isFollowing = true;
-        followCoroutine = StartCoroutine(UpdateDestination());
+        recalcTimer = 0f;
     }
 
     public void StopFollowing()
     {
         isFollowing = false;
-        if (followCoroutine != null)
-        {
-            StopCoroutine(followCoroutine);
-            followCoroutine = null;
-        }
         agent.ResetPath();
     }
 
-    private IEnumerator UpdateDestination()
+    public void Move()
     {
-        while (isFollowing)
+        if (agent.enabled && agent.isOnNavMesh && target != null)
         {
-            if (target != null && agent.enabled && agent.isOnNavMesh)
-            {
-                agent.SetDestination(target.position);
-            }
-            yield return new WaitForSeconds(0.5f); // Рідше оновлюємо ціль
+            agent.SetDestination(target.position);
         }
     }
 }

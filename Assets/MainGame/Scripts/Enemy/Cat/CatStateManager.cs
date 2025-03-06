@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CatStateManager : MonoBehaviour
 {
+    [SerializeField] private GameObject lostPoint;
+    private GameObject tempObject;
+
     [SerializeField] private GameObject mimickObject;
     [SerializeField] private GameObject catObject;
 
@@ -61,4 +64,17 @@ public class CatStateManager : MonoBehaviour
     {
         EnemyManager.Instance.RemoveCat(this);
     }
+
+    public Transform SpawnMovePoint(Vector3 lostPointPosition)
+    {
+        tempObject = Instantiate(lostPoint, lostPointPosition, Quaternion.identity);
+
+        return tempObject.transform;
+    }
+
+    public void DestroyTempObject()
+    {
+        Destroy(tempObject);
+    }
+
 }
