@@ -24,7 +24,7 @@ public class WolfMoveToPlayer : WolfState
 
         if (Vector3.Distance(wolf.transform.position, wolf.enemyPatrulsPoint.GetPlayerTransform().position) < wolf.wolfParameters.GetMoveToPlayerStopDistance())
         {
-            wolf.enemyAI.StopFollowing();
+            //wolf.enemyAI.StopFollowing();
             //wolf.SwitchState(wolf.wolfAttackState);
         }
     }

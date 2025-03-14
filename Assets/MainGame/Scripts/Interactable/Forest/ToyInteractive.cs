@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class ToyInteractive : SayingInteractive
 {
     [SerializeField] private List<MimicRandomizer> mimicRandomizers = new List<MimicRandomizer>();
+    [SerializeField] private Action[] actions;
 
     private void Awake()
     {
@@ -26,6 +28,15 @@ public class ToyInteractive : SayingInteractive
             {
                 mimicRandomizers[i].enabled = true;
                 mimicRandomizers[i].ActiveMimick();
+            }
+        }
+
+        if (actions != null)
+        {
+            for (int i = 0; i < actions.Length; i++)
+            {
+                actions[i].enabled = true;
+                actions[i].Active();
             }
         }
 

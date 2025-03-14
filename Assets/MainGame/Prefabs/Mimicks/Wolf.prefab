@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1759cad5d2e37674cad6099e75a9cf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recalcInterval: 0.2
+  recalcInterval: 0.5
 --- !u!114 &1416010638097742728
 MonoBehaviour:
   m_ObjectHideFlags: 0
